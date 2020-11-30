@@ -10,3 +10,4 @@ data/creation_tutorialcommoncontent-2020-10-11-13-10-57 copy.csv
 .spyproject/vcs.ini
 .spyproject/encoding.ini
 .spyproject/codestyle.ini
+*.csv
