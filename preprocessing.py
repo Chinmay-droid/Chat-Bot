@@ -30,13 +30,29 @@ def parse_this(filepath):
         d.loc[i,'parsed_body'] = d.loc[i,'parsed_body'].replace(u'\xa0',u'')
         d.loc[i,'parsed_body'] = d.loc[i,'parsed_body'].replace(u'\r\n',u'')
         d.loc[i,'parsed_body'] = d.loc[i,'parsed_body'].replace(u'\n\n',u'')
+        d.loc[i,'parsed_body'] = d.loc[i,'parsed_body'].replace(u"!@#$%^&*()[]{};:,./<>?\|`~-=_+",u'')
     return d
 
-filepath = r'data\Unclean\questions_part_unclean.csv'
-ques = parse_this(filepath)
-filepath = r'data\Unclean\website_answer_part.csv'
-ans = parse_this(filepath) 
-
+def parser(filepath):
+  d = pd.read_csv(filepath)
+  for col in d.columns:
+    if col in ('title','body'):
+      parsed_col = 'parsed_'+str(col)
+      d[parsed_col] = d[col].str.strip()
+      d[parsed_col] = d[parsed_col].replace(u'\xa0',u'')
+      d[parsed_col] = d[parsed_col].replace(u'\r\n',u'')
+      d[parsed_col] = d[parsed_col].replace(u'\n\n',u'')
+      d[parsed_col] = d[parsed_col].replace(u"!@#$%^&*()[]{};:,./<>?\|`~-=_+",u'')
+  return d
+    
+def get_ques_ans():
+  filepath = r'data/questions.csv'
+  ques = parse_this(filepath)
+  ques = parser(filepath)
+  filepath = r'data/website_answer_part.csv'
+  ans = parse_this(filepath)
+  ans = parser(filepath)
+  return ques,ans
 
 
 
