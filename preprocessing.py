@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov 30 18:16:46 2020
-
-@author: Utkarsh 
+Created on Mon Nov 30 18:16:46 2020 
 
 The function "parse_this" parses the body and title (if present) of the questions and answers.
 It removes various html tags in the actual text of the body and also removes any unnecessary spaces
